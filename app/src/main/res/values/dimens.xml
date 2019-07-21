@@ -1,0 +1,11 @@
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="txt_18dp">18dp</dimen>
+    <dimen name="txt_22dp">22dp</dimen>
+    <dimen name="txt_scale_1dp">1dp</dimen>
+    <dimen name="txt_scale_2dp">2dp</dimen>
+    <dimen name="txt_24dp">24dp</dimen>
+    <dimen name="txt_14dp">14dp</dimen>
+    <dimen name="padding_4sp">4sp</dimen>
+    <dimen name="padding_8sp">8sp</dimen>
+</resources>

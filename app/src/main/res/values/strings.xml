@@ -1,0 +1,66 @@
+<resources>
+    <string name="app_name_label">RegisPro</string>
+    <string name="main_activity_label">Registro Professore</string>
+    <string name="schools_activity_label">Istituti Scolastici</string>
+    <string name="action_load_label">Carica</string>
+    <string name="action_save_label">Salva</string>
+    <string name="action_settings_label">Impostazioni</string>
+    <string name="input_school_name_hint_txt">Nome istituto</string>
+    <string name="subjects_btn_label">Materie di insegnamento</string>
+    <string name="schools_btn_label">Istituti scolastici</string>
+    <string name="classes_label">CLASSI</string>
+    <string name="name_label">Nome</string>
+    <string name="function_label">Funzione</string>
+    <string name="main_menu_label">Menu Principale</string>
+    <string name="main_view_label">Le mie classi, i miei istituti</string>
+    <string name="input_subject_name_hint_txt">Nome materia</string>
+    <string name="subjects_activity_label">Materie di insegnamento</string>
+    <string name="back_label">Indietro</string>
+    <string name="plus_label">+</string>
+    <string name="sub_classes_label">Classi</string>
+    <string name="schools_prompt">Seleziona Istituto</string>
+    <string name="class_list_label">Lista classi</string>
+    <string name="students_label">Studenti</string>
+    <string name="ranks_label">Voti</string>
+    <string name="avarages_label">Medie</string>
+    <string name="students_activity_label">Studenti</string>
+    <string name="school_label">Istituto</string>
+    <string name="class_label">Classe</string>
+    <string name="rank_date_label">Data prova</string>
+    <string name="subject_label">Materia</string>
+    <string name="rank_type_label">Tipo voto</string>
+    <string name="tests_label">Prove</string>
+
+    <string-array name="schools_array">
+        <item>Scuola1</item>
+        <item>Scuola2</item>
+    </string-array>
+
+    <string name="material_calendar_monday">LU</string>
+    <string name="material_calendar_tuesday">MA</string>
+    <string name="material_calendar_wednesday">ME</string>
+    <string name="material_calendar_thursday">GIO</string>
+    <string name="material_calendar_friday">VE</string>
+    <string name="material_calendar_saturday">SA</string>
+    <string name="material_calendar_sunday">DO</string>
+
+    <array name="material_calendar_months_array">
+        <item>Gennaio</item>
+        <item>Febbraio</item>
+        <item>Marzo</item>
+        <item>Aprile</item>
+        <item>Maggio</item>
+        <item>Giugno</item>
+        <item>Luglio</item>
+        <item>Agosto</item>
+        <item>Settembre</item>
+        <item>Ottobre</item>
+        <item>Novembre</item>
+        <item>Dicembre</item>
+    </array>
+
+    <string name="material_calendar_today_button">Oggi</string>
+    <string name="material_calendar_positive_button">OK</string>
+    <string name="material_calendar_negative_button">Annulla</string>
+
+</resources>

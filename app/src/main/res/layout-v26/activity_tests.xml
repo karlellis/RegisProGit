@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".TestsActivity"
+        android:background="#AAAAAA">
+
+    <Button
+            android:text="@string/avarages_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/avarages_btn"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:background="#BA68C8"/>
+    <com.google.android.material.appbar.AppBarLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:theme="@style/AppTheme.AppBarOverlay"
+            android:id="@+id/appBarLayout_tests"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="#D38B10"
+                app:titleTextAppearance="@style/toolbar"
+                app:popupTheme="@style/AppTheme.PopupOverlay"/>
+        <TextView
+                android:text="@string/tests_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tests_title"
+                android:textStyle="bold|italic"
+                android:gravity="center"
+                android:textSize="24sp"
+                android:background="#D38B10"/>
+        <TextView
+                android:text="@string/schools_activity_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tests_schools_title"
+                android:textStyle="bold|italic"
+                android:gravity="center"
+                android:textSize="24sp"
+                android:background="#D38B10"/>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- <include app:layout_constraintTop_toBottomOf="@+subjectDelete/appBarLayout_schools"
+             app:layout_constraintStart_toStartOf="parent"
+             app:layout_constraintEnd_toEndOf="parent"
+             android:layout_height="wrap_content"/> -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout_tests"
+            app:layout_constraintBottom_toTopOf="@+id/avarages_btn"
+            android:id="@+id/constraintRanksLayout" android:layout_marginTop="2dp">
+        <com.applandeo.materialcalendarview.CalendarView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/tests_calendar"
+                app:type="one_day_picker">
+
+        </com.applandeo.materialcalendarview.CalendarView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

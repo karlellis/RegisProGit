@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<TextView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:text="1"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:background="#F7EB9F"
+        android:id="@+id/ranks_rate"
+        android:layout_marginLeft="4dp"
+        android:layout_marginStart="4dp"
+        android:paddingLeft="@dimen/padding_8sp"
+        android:paddingRight="@dimen/padding_8sp"
+        android:layout_marginRight="4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="2dp"
+        android:textSize="24sp"/>
