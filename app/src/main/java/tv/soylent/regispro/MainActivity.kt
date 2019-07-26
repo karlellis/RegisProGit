@@ -66,12 +66,15 @@ class MainActivity : AppCompatActivity(), ClassesFragment.OnFragmentInteractionL
     }
 
     override fun onResume() {
+        schools_tab.removeAllTabs()
         val schoolList = dbHandler.getSchools(this)
         val tabAdapter = TabViewPagerAdapter(supportFragmentManager)
         for (i in 0 until schoolList.size) {
             tabAdapter.addFragment(ClassesFragment(), title = schoolList[i].schoolName.toString())
 //            tabAdapter.addFragment(ClassesFragment(), title = "Scuola2")
         }
+        viewPager.adapter = tabAdapter
+        schools_tab.setupWithViewPager(viewPager)
         super.onResume()
     }
 

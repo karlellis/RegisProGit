@@ -17,7 +17,7 @@ class AddClassActivity : AppCompatActivity() {
                 Toast.makeText(this, "Inserire nome classe", Toast.LENGTH_SHORT).show()
                 editClassName.requestFocus()
             } else {
-                val klass = Class()
+                val klass = Klass()
                 klass.className = editClassName.text.toString()
 
                 klass.schoolID = intent.getIntExtra("SchoolID",0)

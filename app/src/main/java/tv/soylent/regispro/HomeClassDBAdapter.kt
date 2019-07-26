@@ -1,22 +1,15 @@
 package tv.soylent.regispro
 
-import android.app.AlertDialog
 import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.classes_item.view.*
 import kotlinx.android.synthetic.main.classes_item.view.class_item_name
 import kotlinx.android.synthetic.main.home_classes_item.view.*
-import kotlinx.android.synthetic.main.lo_class_update.view.*
-import tv.soylent.regispro.MainActivity.Companion.dbHandler
 
-class HomeClassDBAdapter (mCtx : Context, val classes : ArrayList<Class>) : RecyclerView.Adapter<HomeClassDBAdapter.ViewHolder>() {
+class HomeClassDBAdapter (mCtx : Context, val classes : ArrayList<Klass>) : RecyclerView.Adapter<HomeClassDBAdapter.ViewHolder>() {
 
 
     val mCtx = mCtx
@@ -37,7 +30,7 @@ class HomeClassDBAdapter (mCtx : Context, val classes : ArrayList<Class>) : Recy
     }
 
     override fun onBindViewHolder(holder: HomeClassDBAdapter.ViewHolder, position: Int) {
-        val  klass  : Class = classes[position]
+        val  klass  : Klass = classes[position]
         holder.txtClassName.text = klass.className
 
         holder.btnAvarage.setOnClickListener {

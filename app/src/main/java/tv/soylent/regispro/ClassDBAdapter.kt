@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.classes_item.view.*
 import kotlinx.android.synthetic.main.lo_class_update.view.*
 import tv.soylent.regispro.MainActivity.Companion.dbHandler
 
-class ClassDBAdapter (mCtx : Context, val classes : ArrayList<Class>) : RecyclerView.Adapter<ClassDBAdapter.ViewHolder>() {
+class ClassDBAdapter (mCtx : Context, val classes : ArrayList<Klass>) : RecyclerView.Adapter<ClassDBAdapter.ViewHolder>() {
 
 
     val mCtx = mCtx
@@ -35,7 +35,7 @@ class ClassDBAdapter (mCtx : Context, val classes : ArrayList<Class>) : Recycler
     }
 
     override fun onBindViewHolder(holder: ClassDBAdapter.ViewHolder, position: Int) {
-        val  klass  : Class = classes[position]
+        val  klass  : Klass = classes[position]
         holder.txtClassName.text = klass.className
 
         holder.btnDelete.setOnClickListener {

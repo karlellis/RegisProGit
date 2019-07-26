@@ -11,7 +11,7 @@ class Subject{
     var subjectName : String? = ""
 }
 
-class Class{
+class Klass{
     var classID : Int = 0
     var schoolID : Int = 0
     var className : String? = ""

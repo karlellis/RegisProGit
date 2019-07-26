@@ -24,7 +24,7 @@ class DBHandler (context: Context, name: String?, factory: SQLiteDatabase.Cursor
         val COLUMN_SUBJECTID = "subjectid"
         val COLUMN_SUBJECTNAME = "subjectname"
 
-        val CLASS_TABLE_NAME = "Class"
+        val CLASS_TABLE_NAME = "Klass"
         val COLUMN_CLASSID = "classtid"
         //val COLUMN_FK_SCHOOLID = "schoolid"
         val COLUMN_CLASSNAME = "classtname"
@@ -55,10 +55,10 @@ class DBHandler (context: Context, name: String?, factory: SQLiteDatabase.Cursor
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-        db?.execSQL("DROP TABLE IF EXISTS $SCHOOL_TABLE_NAME")
-        db?.execSQL("DROP TABLE IF EXISTS $SUBJECT_TABLE_NAME")
-        db?.execSQL("DROP TABLE IF EXISTS $CLASS_TABLE_NAME")
-        onCreate(db)
+//        db?.execSQL("DROP TABLE IF EXISTS $SCHOOL_TABLE_NAME")
+//        db?.execSQL("DROP TABLE IF EXISTS $SUBJECT_TABLE_NAME")
+//        db?.execSQL("DROP TABLE IF EXISTS $CLASS_TABLE_NAME")
+//        onCreate(db)
 
 //        if (oldVersion < 2) {
 //            db.execSQL("Alter Table $SCHOOL_TABLE_NAME" +
@@ -199,17 +199,17 @@ class DBHandler (context: Context, name: String?, factory: SQLiteDatabase.Cursor
         return result
     }
 
-    fun getClasses(mCtx: Context): ArrayList<Class> {
+    fun getClasses(mCtx: Context): ArrayList<Klass> {
         val qry = "Select * From $CLASS_TABLE_NAME"
         val db: SQLiteDatabase = this.readableDatabase
         val cursor: Cursor = db.rawQuery(qry, null)
-        val classes = ArrayList<Class>()
+        val classes = ArrayList<Klass>()
 
         if (cursor.count == 0)
             Toast.makeText(mCtx, "Nessuna Classe trovata", Toast.LENGTH_SHORT).show() else {
             cursor.moveToFirst()
             while (!cursor.isAfterLast()) {
-                val klass = Class()
+                val klass = Klass()
                 klass.classID = cursor.getInt(cursor.getColumnIndex(COLUMN_CLASSID))
                 klass.schoolID = cursor.getInt(cursor.getColumnIndex(COLUMN_SCHOOLID))
                 klass.className = cursor.getString(cursor.getColumnIndex(COLUMN_CLASSNAME))
@@ -223,7 +223,7 @@ class DBHandler (context: Context, name: String?, factory: SQLiteDatabase.Cursor
         return classes
     }
 
-    fun addClass(mCtx: Context, klass: Class) {
+    fun addClass(mCtx: Context, klass: Klass) {
         val values = ContentValues()
         values.put(COLUMN_CLASSNAME, klass.className)
         values.put(COLUMN_SCHOOLID, klass.schoolID)
