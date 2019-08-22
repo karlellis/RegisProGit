@@ -16,3 +16,11 @@ class Klass{
     var schoolID : Int = 0
     var className : String? = ""
 }
+
+class Student{
+    var studentID : Int = 0
+    var studentName : String? = ""
+    var studentSurname : String? = ""
+    var schoolID : Int = 0
+    var classID : Int = 0
+}
