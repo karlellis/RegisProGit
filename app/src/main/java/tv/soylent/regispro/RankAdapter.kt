@@ -39,7 +39,7 @@ class RankAdapter (val rankItemList: MutableList<RanksData> = mutableListOf()) :
 
         }
         private fun add(){}
-        public fun refresh() {
+        fun refresh() {
             notifyDataSetChanged()
         }
     }

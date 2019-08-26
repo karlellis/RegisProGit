@@ -54,7 +54,7 @@ class ClassDBAdapter (mCtx : Context, val classes : ArrayList<Klass>) : Recycler
                         Toast.makeText(mCtx, "Errore nella rimozione", Toast.LENGTH_SHORT).show()
                     }
                 })
-                .setNegativeButton("No", DialogInterface.OnClickListener(){dialog,which ->})
+                .setNegativeButton("No", DialogInterface.OnClickListener { dialog, which ->})
                 .setIcon(R.drawable.ic_warning_black_24dp)
                 .show()
         }
@@ -82,7 +82,7 @@ class ClassDBAdapter (mCtx : Context, val classes : ArrayList<Klass>) : Recycler
                         Toast.makeText(mCtx, "Errore nella modifica", Toast.LENGTH_SHORT).show()
                     }
                 })
-                .setNegativeButton("Cancella", DialogInterface.OnClickListener(){dialog,which ->})
+                .setNegativeButton("Cancella", DialogInterface.OnClickListener { dialog, which ->})
             val alert = builder.create()
             alert.show()
         }

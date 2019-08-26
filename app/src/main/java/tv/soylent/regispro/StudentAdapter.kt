@@ -22,10 +22,10 @@ class StudentAdapter (val studentItemList: MutableList<StudentsData> = mutableLi
     }
     inner class StudentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(students: StudentsData) {
-            itemView.stud_trash_img.setImageResource(students.studentDelete)
+            itemView.student_trash_img.setImageResource(students.studentDelete)
             itemView.student_item_name.text = students.studentName
-            itemView.student_item_id.text = students.studentID.toString()
-            itemView.stud_trash_img.setOnClickListener(remove())
+            itemView.student_item_pos.text = students.studentID.toString()
+            itemView.student_trash_img.setOnClickListener(remove())
         }
         private fun remove(): (View) -> Unit = {v: View ->
             layoutPosition.also { currentPosition ->

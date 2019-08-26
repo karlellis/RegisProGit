@@ -13,8 +13,8 @@ class Subject{
 
 class Klass{
     var classID : Int = 0
-    var schoolID : Int = 0
     var className : String? = ""
+    var schoolID : Int = 0
 }
 
 class Student{

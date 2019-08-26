@@ -7,7 +7,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_classes.*
@@ -33,7 +33,7 @@ class ClassesActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_classes)
         setSupportActionBar(toolbar)
-        schools_spinner!!.setOnItemSelectedListener(this)
+        schools_spinner!!.onItemSelectedListener = this
 
         val schoolList = dbHandler.getSchools(this)
         var schoolListName = ArrayList<String>()
@@ -47,7 +47,7 @@ class ClassesActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener 
         // Set layout to use when the list of choices appear
         spinner_schools_aa.setDropDownViewResource(R.layout.classes_textview)
         // Set Adapter to Spinner
-        schools_spinner!!.setAdapter(spinner_schools_aa)
+        schools_spinner!!.adapter = spinner_schools_aa
 
 //        var classList = ArrayList<ClassesData>()
 //        classList.add(ClassesData(1, 1, "5eleG", R.drawable.ic_students, R.drawable.ic_delete))
@@ -85,12 +85,12 @@ class ClassesActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener 
 
             Toast.makeText(this, "Clicked: ${classItem.className}", Toast.LENGTH_LONG).show()
 
-            val intent = Intent(this,StudentsActivity::class.java);
-            var className = classItem.className
+            val intent = Intent(this,StudentsActivity::class.java)
+        var className = classItem.className
             var schoolName = schools_spinner.selectedItem.toString()
             intent.putExtra("Classname", className)
             intent.putExtra("Schoolname", schoolName)
-            startActivity(intent);
+            startActivity(intent)
 
     }
 }

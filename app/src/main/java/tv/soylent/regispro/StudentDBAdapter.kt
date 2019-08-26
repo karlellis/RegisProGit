@@ -12,85 +12,105 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.classes_item.view.*
 import kotlinx.android.synthetic.main.lo_class_update.view.*
+import kotlinx.android.synthetic.main.lo_student_update.view.*
+import kotlinx.android.synthetic.main.students_item.view.*
 import tv.soylent.regispro.MainActivity.Companion.dbHandler
 
-class StudentDBAdapter (mCtx : Context, val classes : ArrayList<Klass>) : RecyclerView.Adapter<StudentDBAdapter.ViewHolder>() {
+class StudentDBAdapter (mCtx : Context, val students : ArrayList<Student>) : RecyclerView.Adapter<StudentDBAdapter.ViewHolder>() {
 
 
     val mCtx = mCtx
 
     class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
-        val txtClassName = itemView.class_item_name
-        val btnStudents = itemView.class_students_img
-        val btnDelete = itemView.class_trash_img
+        val txtStudentPos = itemView.student_item_pos
+        val txtStudentName = itemView.student_item_name
+        val txtStudentSurname = itemView.student_item_surname
+        val btnRanks = itemView.student_ranks_img
+        val btnDelete = itemView.student_trash_img
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StudentDBAdapter.ViewHolder {
-        val v : View = LayoutInflater.from(parent.context).inflate(R.layout.classes_item,parent,false)
+        val v : View = LayoutInflater.from(parent.context).inflate(R.layout.students_item,parent,false)
         return ViewHolder(v)
     }
 
     override fun getItemCount(): Int {
-        return classes.size
+        return students.size
     }
 
     override fun onBindViewHolder(holder: StudentDBAdapter.ViewHolder, position: Int) {
-        val  klass  : Klass = classes[position]
-        holder.txtClassName.text = klass.className
+        val  student  : Student = students[position]
+        holder.txtStudentName.text = student.studentName
+        holder.txtStudentSurname.text = student.studentSurname
+        holder.txtStudentPos.text = position.toString()
+
+        holder.btnRanks.setOnClickListener {
+            // to do
+        }
 
         holder.btnDelete.setOnClickListener {
-            val className = klass.className
+            val studentName = student.studentName
+            val studentSurname = student.studentSurname
 
             var alertDialog = AlertDialog.Builder(mCtx)
                 .setTitle("Attenzione")
-                .setMessage("Cancellare definitivamente : $className")
+                .setMessage("Cancellare definitivamente : $studentName $studentSurname")
                 .setPositiveButton("Si", DialogInterface.OnClickListener {dialog, whitch ->
-                    if (dbHandler.deleteClass(klass.classID, klass.schoolID)) {
-                        classes.removeAt(position)
+                    if (dbHandler.deleteStudent(student.studentID, student.schoolID, student.classID)) {
+                        students.removeAt(position)
                         notifyItemRemoved(position)
-                        notifyItemRangeChanged(position,classes.size)
-                        Toast.makeText(mCtx, "Classe $className rimossa", Toast.LENGTH_SHORT).show()
+                        notifyItemRangeChanged(position,students.size)
+                        Toast.makeText(mCtx, "Studente $studentName $studentSurname rimosso", Toast.LENGTH_SHORT).show()
                     } else {
                         Toast.makeText(mCtx, "Errore nella rimozione", Toast.LENGTH_SHORT).show()
                     }
                 })
-                .setNegativeButton("No", DialogInterface.OnClickListener(){dialog,which ->})
+                .setNegativeButton("No", DialogInterface.OnClickListener { dialog, which ->})
                 .setIcon(R.drawable.ic_warning_black_24dp)
                 .show()
         }
 
-        holder.txtClassName.setOnClickListener {
+        holder.txtStudentName.setOnClickListener {
             val inflater = LayoutInflater.from(mCtx)
-            val view = inflater.inflate(R.layout.lo_class_update, null)
+            val view = inflater.inflate(R.layout.lo_student_update, null)
 
-            val txtClassName : TextView = view.findViewById(R.id.editUpClassName)
+            val txtStudentName : TextView = view.findViewById(R.id.editUpStudentName)
+            val txtStudentSurname : TextView = view.findViewById(R.id.editUpStudentSurname)
 
-            txtClassName.text = klass.className
+            txtStudentName.text = student.studentName
+            txtStudentSurname.text = student.studentSurname
 
             val builder = AlertDialog.Builder(mCtx)
-                .setTitle("Modifica nome Classe")
+                .setTitle("Modifica nome Studente")
                 .setView(view)
                 .setPositiveButton("Modifica", DialogInterface.OnClickListener { dialog, which ->
-                    val isUpdate = dbHandler.updateClass(
-                        klass.classID.toString(),
-                        view.editUpClassName.text.toString())
+                    val isUpdate = dbHandler.updateStudent(
+                        student.studentID.toString(),
+                        view.editUpStudentName.text.toString(), view.editUpStudentSurname.text.toString())
                     if (isUpdate == true) {
-                        classes[position].className = view.editUpClassName.text.toString()
+                        students[position].studentName = view.editUpStudentName.text.toString()
+                        students[position].studentSurname = view.editUpStudentSurname.text.toString()
                         notifyDataSetChanged()
-                        Toast.makeText(mCtx, "Modificata correttamente", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(mCtx, "Modificato correttamente", Toast.LENGTH_SHORT).show()
                     } else {
                         Toast.makeText(mCtx, "Errore nella modifica", Toast.LENGTH_SHORT).show()
                     }
                 })
-                .setNegativeButton("Cancella", DialogInterface.OnClickListener(){dialog,which ->})
+                .setNegativeButton("Cancella", DialogInterface.OnClickListener { dialog, which ->})
             val alert = builder.create()
             alert.show()
         }
 
-        holder.btnStudents.setOnClickListener { v ->
+        holder.btnRanks.setOnClickListener { v ->
             val intent = Intent(v.context,StudentsActivity::class.java)
-            var className = klass.className
-            var schoolName = klass.schoolID.toString()
+            var studentName = student.studentName
+            var studentSurname = student.studentSurname
+            var className = student.classID.toString()
+            var schoolName = student.schoolID.toString()
+
+            intent.putExtra("Studentname", studentName)
+            intent.putExtra("StudentSurname", studentSurname)
             intent.putExtra("Classname", className)
             intent.putExtra("Schoolname", schoolName)
             v.context.startActivity(intent)

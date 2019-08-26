@@ -25,9 +25,9 @@ class DBHandler (context: Context, name: String?, factory: SQLiteDatabase.Cursor
         val COLUMN_SUBJECTNAME = "subjectname"
 
         val CLASS_TABLE = "Klass"
-        val COLUMN_CLASSID = "classtid"
+        val COLUMN_CLASSID = "classid"
         //val COLUMN_FK_SCHOOLID = "schoolid"
-        val COLUMN_CLASSNAME = "classtname"
+        val COLUMN_CLASSNAME = "classname"
 
         val STUDENT_TABLE = "Student"
         val COLUMN_STUDENTID = "studentid"
@@ -48,8 +48,8 @@ class DBHandler (context: Context, name: String?, factory: SQLiteDatabase.Cursor
 
         val CREATE_CLASS_TABLE: String = ("CREATE TABLE $CLASS_TABLE (" +
                 "$COLUMN_CLASSID INTEGER PRIMARY KEY AUTOINCREMENT," +
-//                "$COLUMN_SCHOOLID INTEGER," +
                 "$COLUMN_CLASSNAME TEXT," +
+                "$COLUMN_SCHOOLID INTEGER," +
                 "FOREIGN KEY (" + COLUMN_SCHOOLID + ") REFERENCES " +
                 SCHOOL_TABLE + "(" + COLUMN_SCHOOLID + "))")
 
@@ -57,6 +57,8 @@ class DBHandler (context: Context, name: String?, factory: SQLiteDatabase.Cursor
                 "$COLUMN_STUDENTID INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "$COLUMN_STUDENTNAME INTEGER," +
                 "$COLUMN_STUDENTSURNAME INTEGER," +
+                "$COLUMN_SCHOOLID INTEGER," +
+                "$COLUMN_CLASSID INTEGER," +
                 "FOREIGN KEY (" + COLUMN_SCHOOLID + ") REFERENCES " +
                 SCHOOL_TABLE + "(" + COLUMN_SCHOOLID + ")," +
                 "FOREIGN KEY (" + COLUMN_CLASSID + ") REFERENCES " +
@@ -72,11 +74,11 @@ class DBHandler (context: Context, name: String?, factory: SQLiteDatabase.Cursor
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-//        db?.execSQL("DROP TABLE IF EXISTS $SCHOOL_TABLE")
-//        db?.execSQL("DROP TABLE IF EXISTS $SUBJECT_TABLE")
-//        db?.execSQL("DROP TABLE IF EXISTS $CLASS_TABLE")
-//        db?.execSQL("DROP TABLE IF EXISTS $STUDENT_TABLE")
-//        onCreate(db)
+        db?.execSQL("DROP TABLE IF EXISTS $SCHOOL_TABLE")
+        db?.execSQL("DROP TABLE IF EXISTS $SUBJECT_TABLE")
+        db?.execSQL("DROP TABLE IF EXISTS $CLASS_TABLE")
+        db?.execSQL("DROP TABLE IF EXISTS $STUDENT_TABLE")
+        onCreate(db)
 
 //        if (oldVersion < 2) {
 //            db.execSQL("Alter Table $SCHOOL_TABLE" +
@@ -93,7 +95,7 @@ class DBHandler (context: Context, name: String?, factory: SQLiteDatabase.Cursor
         if (cursor.count == 0)
             Toast.makeText(mCtx, "Nessun Istituto trovato", Toast.LENGTH_SHORT).show() else {
             cursor.moveToFirst()
-            while (!cursor.isAfterLast()) {
+            while (!cursor.isAfterLast) {
                 val school = School()
                 school.schoolID = cursor.getInt(cursor.getColumnIndex(COLUMN_SCHOOLID))
                 school.schoolName = cursor.getString(cursor.getColumnIndex(COLUMN_SCHOOLNAME))
@@ -161,14 +163,14 @@ class DBHandler (context: Context, name: String?, factory: SQLiteDatabase.Cursor
         if (cursor.count == 0)
             Toast.makeText(mCtx, "Nessuna Materia trovata", Toast.LENGTH_SHORT).show() else {
             cursor.moveToFirst()
-            while (!cursor.isAfterLast()) {
+            while (!cursor.isAfterLast) {
                 val subject = Subject()
                 subject.subjectID = cursor.getInt(cursor.getColumnIndex(COLUMN_SUBJECTID))
                 subject.subjectName = cursor.getString(cursor.getColumnIndex(COLUMN_SUBJECTNAME))
                 subjects.add(subject)
                 cursor.moveToNext()
             }
-            Toast.makeText(mCtx, "${cursor.count.toString()} Materie trovate", Toast.LENGTH_SHORT).show()
+            Toast.makeText(mCtx, "${cursor.count} Materie trovate", Toast.LENGTH_SHORT).show()
         }
         cursor.close()
         db.close()
@@ -226,7 +228,7 @@ class DBHandler (context: Context, name: String?, factory: SQLiteDatabase.Cursor
         if (cursor.count == 0)
             Toast.makeText(mCtx, "Nessuna Classe trovata", Toast.LENGTH_SHORT).show() else {
             cursor.moveToFirst()
-            while (!cursor.isAfterLast()) {
+            while (!cursor.isAfterLast) {
                 val klass = Klass()
                 klass.classID = cursor.getInt(cursor.getColumnIndex(COLUMN_CLASSID))
                 klass.schoolID = cursor.getInt(cursor.getColumnIndex(COLUMN_SCHOOLID))
@@ -234,7 +236,7 @@ class DBHandler (context: Context, name: String?, factory: SQLiteDatabase.Cursor
                 classes.add(klass)
                 cursor.moveToNext()
             }
-            Toast.makeText(mCtx, "${cursor.count.toString()} Classi trovate", Toast.LENGTH_SHORT).show()
+            Toast.makeText(mCtx, "${cursor.count} Classi trovate", Toast.LENGTH_SHORT).show()
         }
         cursor.close()
         db.close()
@@ -292,7 +294,7 @@ class DBHandler (context: Context, name: String?, factory: SQLiteDatabase.Cursor
         if (cursor.count == 0)
             Toast.makeText(mCtx, "Nessuno studente trovato", Toast.LENGTH_SHORT).show() else {
             cursor.moveToFirst()
-            while (!cursor.isAfterLast()) {
+            while (!cursor.isAfterLast) {
                 val student = Student()
                 student.studentID = cursor.getInt(cursor.getColumnIndex(COLUMN_STUDENTID))
                 student.studentName = cursor.getString(cursor.getColumnIndex(COLUMN_STUDENTNAME))
@@ -303,7 +305,7 @@ class DBHandler (context: Context, name: String?, factory: SQLiteDatabase.Cursor
                 students.add(student)
                 cursor.moveToNext()
             }
-            Toast.makeText(mCtx, "${cursor.count.toString()} studenti trovati", Toast.LENGTH_SHORT).show()
+            Toast.makeText(mCtx, "${cursor.count} studenti trovati", Toast.LENGTH_SHORT).show()
         }
         cursor.close()
         db.close()

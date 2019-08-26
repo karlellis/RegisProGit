@@ -3,7 +3,7 @@ package tv.soylent.regispro
 import android.R.attr.fastScrollOverlayPosition
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_ranks.*
 import kotlinx.android.synthetic.main.activity_subjects.toolbar
@@ -324,9 +324,5 @@ class RanksActivity : AppCompatActivity() {
     }
 
 
-
-    override fun onCreateView(name: String, context: Context, attrs: AttributeSet): View? {
-        return super.onCreateView(name, context, attrs)
-    }
 }
 
