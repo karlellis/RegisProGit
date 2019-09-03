@@ -57,18 +57,22 @@ class HomeClassDBAdapter (mCtx : Context, val classes : ArrayList<Klass>) : Recy
         holder.txtClassName.setOnClickListener {v ->
             val intent = Intent(v.context,StudentsActivity::class.java)
             var className = klass.className
-            var schoolName = klass.schoolID.toString()
-            intent.putExtra("Classname", className)
-            intent.putExtra("Schoolname", schoolName)
+            var schoolID = klass.schoolID
+            var classID = klass.classID
+            intent.putExtra("StudentClassName", className)
+            intent.putExtra("StudentSchoolID", schoolID)
+            intent.putExtra("ClassID", classID)
             v.context.startActivity(intent)
         }
 
         holder.btnRanks.setOnClickListener { v ->
             val intent = Intent(v.context,TestsActivity::class.java)
             var className = klass.className
-            var schoolName = klass.schoolID.toString()
-            intent.putExtra("Classname", className)
-            intent.putExtra("Schoolname", schoolName)
+            var schoolID = klass.schoolID
+            var classID = klass.classID
+            intent.putExtra("ClassName", className)
+            intent.putExtra("SchoolID", schoolID)
+            intent.putExtra("ClassID", classID)
             v.context.startActivity(intent)
         }
 

@@ -250,7 +250,7 @@ class DBHandler (context: Context, name: String?, factory: SQLiteDatabase.Cursor
         val db = this.writableDatabase
         try {
             db.insert(CLASS_TABLE, null, values)
-            Toast.makeText(mCtx, "Classe aggiunta", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(mCtx, "Classe aggiunta", Toast.LENGTH_SHORT).show()
         } catch (e: Exception) {
             Toast.makeText(mCtx, e.message, Toast.LENGTH_SHORT).show()
         }

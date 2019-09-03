@@ -290,7 +290,7 @@ class RanksActivity : AppCompatActivity() {
 
         //--------------------------------------------------------------//
 
-        ranks_school_title.text = "Istituto " + intent.getStringExtra("Schoolname") + " " + intent.getStringExtra("Classname")
+        ranks_school_title.text = "Istituto " + intent.getIntExtra("SchoolID",0) + " " + intent.getStringExtra("ClassName")
 
         ranks_date_label.text = intent.getStringExtra("Day")
 

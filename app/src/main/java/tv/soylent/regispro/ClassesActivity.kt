@@ -48,6 +48,26 @@ class ClassesActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener 
         spinner_schools_aa.setDropDownViewResource(R.layout.classes_textview)
         // Set Adapter to Spinner
         schools_spinner!!.adapter = spinner_schools_aa
+        var selectedSchoolID: Int = -1
+        schools_spinner?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                val selectedItem = parent?.getItemAtPosition(position).toString()
+//                for (i in 0 until schoolList.size) {
+//                    if (schoolList[i].schoolName.toString() == selectedItem) {
+//                        selectedSchoolID = schoolList[i].schoolID
+//                    }
+//                }
+                selectedSchoolID = schoolList[schools_spinner.selectedItemPosition].schoolID
+
+                Toast.makeText(this@ClassesActivity, "Clicked: $selectedSchoolID", Toast.LENGTH_LONG).show()
+            }
+
+        }
+
 
 //        var classList = ArrayList<ClassesData>()
 //        classList.add(ClassesData(1, 1, "5eleG", R.drawable.ic_students, R.drawable.ic_delete))
@@ -61,10 +81,12 @@ class ClassesActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener 
 
         classes_add_btn.setOnClickListener {
 
-            val i = Intent(this, AddClassActivity::class.java)
-            var schoolID = schoolList[schools_spinner.selectedItemPosition].schoolID
-            intent.putExtra("SchoolID", schoolID)
-            startActivity(i)
+            val intent = Intent(this, AddClassActivity::class.java)
+            var schoolID = selectedSchoolID
+//            var schoolID = schoolList[schools_spinner.selectedItemPosition].schoolID
+            intent.putExtra("AddSchoolID", schoolID)
+//            Toast.makeText(this, "School ID: " + schoolID, Toast.LENGTH_SHORT).show()
+            startActivity(intent)
 
 //                view ->
 //            Snackbar.make(view, "Add classes", Snackbar.LENGTH_LONG)

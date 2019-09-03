@@ -31,9 +31,11 @@ class TestsActivity : AppCompatActivity() {
         schoolList.add(SchoolsData(1, "Scuola1", R.drawable.ic_delete))
         schoolList.add(SchoolsData(2, "Scuola2", R.drawable.ic_delete))
 
-        tests_schools_title.text = "Istituto " + intent.getStringExtra("Schoolname") + " " + intent.getStringExtra("Classname")
-        var testClassName = intent.getStringExtra("Classname")
-        var testSchoolName = intent.getStringExtra("Schoolname")
+        var testClassName = intent.getStringExtra("ClassName")
+        var testSchoolID = intent.getIntExtra("SchoolID",0)
+        var testClassID = intent.getIntExtra("ClassID",0)
+
+        tests_schools_title.text = "Istituto " + testSchoolID + " " + testClassName
 
         tests_calendar.setOnDayClickListener(OnDayClickListener { eventDay ->
             val clickedDayCalendar = eventDay.calendar
@@ -43,8 +45,9 @@ class TestsActivity : AppCompatActivity() {
 
             val intent = Intent(this,RanksActivity::class.java)
             intent.putExtra("Day", date)
-            intent.putExtra("Classname", testClassName)
-            intent.putExtra("Schoolname", testSchoolName)
+            intent.putExtra("ClassName", testClassName)
+            intent.putExtra("SchoolID", testSchoolID)
+            intent.putExtra("ClassID", testClassID)
             this.startActivity(intent)
 
         })

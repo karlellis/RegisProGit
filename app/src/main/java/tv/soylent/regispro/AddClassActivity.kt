@@ -20,7 +20,9 @@ class AddClassActivity : AppCompatActivity() {
                 val klass = Klass()
                 klass.className = editClassName.text.toString()
 
-                klass.schoolID = intent.getIntExtra("SchoolID",0)
+                klass.schoolID = this.getIntent().getIntExtra("AddSchoolID",0)
+
+                Toast.makeText(this, "School ID: " + klass.schoolID, Toast.LENGTH_SHORT).show()
 
                 dbHandler.addClass(this, klass)
                 ClearEdits()

@@ -90,9 +90,15 @@ class ClassDBAdapter (mCtx : Context, val classes : ArrayList<Klass>) : Recycler
         holder.btnStudents.setOnClickListener { v ->
             val intent = Intent(v.context,StudentsActivity::class.java)
             var className = klass.className
-            var schoolName = klass.schoolID.toString()
-            intent.putExtra("Classname", className)
-            intent.putExtra("Schoolname", schoolName)
+            var schoolID = klass.schoolID
+            var classID = klass.classID
+
+//            Toast.makeText(mCtx, "Class+School " + className + " " + schoolID, Toast.LENGTH_SHORT).show()
+
+            intent.putExtra("StudentClassName", className)
+            intent.putExtra("StudentSchoolID", schoolID)
+            intent.putExtra("StudentClassID", classID)
+
             v.context.startActivity(intent)
         }
 

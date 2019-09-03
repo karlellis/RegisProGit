@@ -36,13 +36,18 @@ class StudentsActivity : AppCompatActivity() {
         students_recycler.adapter = StudentDBAdapter(this, dbHandler.getStudents(this))
 
 //        students_class_title.text = getResources().getString(R.string.class_label) + " " + intent.getStringExtra("Classname")
-        students_school_title.text = "Istituto " + intent.getStringExtra("Schoolname") + " " + intent.getStringExtra("Classname")
+
+
+        var className = intent.getStringExtra("StudentClassName")
+        var schoolID = intent.getIntExtra("StudentSchoolID",0)
+        var classID = intent.getIntExtra("StudentClassID",0)
+
+        students_school_title.text = "Istituto " + schoolID + " " + className
+
         student_add_btn.setOnClickListener {
 
             val i = Intent(this, AddStudentActivity::class.java)
 
-            var schoolID = intent.getIntExtra("SchoolID",0)
-            var classID = intent.getIntExtra("ClassID",0)
             intent.putExtra("SchoolID", schoolID)
             intent.putExtra("ClassID", classID)
 
